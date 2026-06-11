@@ -29,13 +29,16 @@ A Liquid Glass (iOS 26) styled Android app for tracking job opportunities from W
 
 | File | Purpose |
 |------|---------|
-| `info.md` | **Master spec** — everything in one file |
-| `link.txt` | DeepSeek conversation URL |
-| `conversation.txt` | Original DeepSeek share link |
-| `conversation.md` | Full DeepSeek conversation (974 lines) |
-| `ui_related_details.md` | Liquid Glass research + Android implementation details |
-| `session_state.md` | This file — resume context |
+| `project_info/info.md` | **Master spec** — everything in one file |
+| `project_info/link.txt` | DeepSeek conversation URL |
+| `project_info/conversation.txt` | Original DeepSeek share link |
+| `project_info/conversation.md` | Full DeepSeek conversation (974 lines) |
+| `project_info/ui_related_details.md` | Liquid Glass research + Android implementation details |
+| `project_info/session_state.md` | This file — resume context |
 | `resume.ps1` | One-click resume script |
+| `PROGRESS.json` | Build phase tracker |
+| `opencode.json` | AI build commands |
+| `GT.md` in `project_info/` | Resume cheat sheet |
 
 ---
 

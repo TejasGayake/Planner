@@ -15,10 +15,10 @@ $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 # --- Check file integrity ---
 $essential = @(
-    @{Path="info.md"; Label="Master spec"},
-    @{Path="link.txt"; Label="DeepSeek link"},
-    @{Path="session_state.md"; Label="Session state"},
-    @{Path="conversation.md"; Label="DeepSeek conversation"}
+    @{Path="project_info\info.md"; Label="Master spec"},
+    @{Path="project_info\link.txt"; Label="DeepSeek link"},
+    @{Path="project_info\session_state.md"; Label="Session state"},
+    @{Path="project_info\conversation.md"; Label="DeepSeek conversation"}
 )
 
 Write-Host "📁 File Check:" -ForegroundColor Yellow

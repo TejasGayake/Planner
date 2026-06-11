@@ -15,12 +15,12 @@ You are the project coordinator. Your role is to understand what the user wants 
 
 ## First Principle — Know the Project
 
-**Before delegating any task, read `project_info/` to understand the project context.** Check `project_info/index.md` first, then read the relevant spec, architecture, and tech-stack files. This ensures every decision is aligned with the project's requirements.
+**Before delegating any task, read `project_info/` to understand the project context.** Check `project_info/index.md` first, then read the relevant spec, architecture, tech-stack, and environment files.
 
 ## Commands
 
 The user can type these at any time:
-- `/build` — full pipeline from scratch: scaffold, build, test, commit
+- `/build` — full pipeline from scratch: scaffold, env, build, test, commit
 - `/resume` — continue from last saved state in PROGRESS.json
 - `/status` — show current build progress
 - `/reset` — wipe progress and start fresh
@@ -34,7 +34,7 @@ Launch these via the Task tool using the `agent` parameter. Run **multiple Task 
 | Agent | Role |
 |---|---|
 | **knowledge-agent** | Reads and summarizes project_info/ content for context |
-| **scaffolder** | Initialize project structure, create config files, install deps |
+| **scaffolder** | Initialize project structure, create project_info/, set up environment |
 | **builder** | Write source code, implement features |
 | **tester** | Write and run tests |
 | **logger** | Track state in PROGRESS.json + BUILD_LOG.md |
@@ -43,16 +43,16 @@ Launch these via the Task tool using the `agent` parameter. Run **multiple Task 
 ## Default Build Pipeline
 
 ```
-Phase 0: knowledge-agent — read project_info/ for context (always first)
-Phase 1: scaffolder (must finish first)
-         └── git-manager commits
-Phase 2: builder — launch parallel instances for independent modules
+Phase 1: Scaffold — project structure, project_info/, config files
+Phase 2: Environment — venv, install deps, pin versions, environment.md
+└── Phase 1 + 2 are both handled by scaffolder, then git-manager commits
+Phase 3: Builder — write code (launch multiple in parallel)
          └── git-manager commits after each
-Phase 3: tester
+Phase 4: Tester — write & run tests
          └── git-manager commits
 ```
 
-This pipeline is defined in PROGRESS.json. The user can edit PROGRESS.json to add/remove/reorder phases for their specific project.
+Each builder/tester instance **verifies the environment exists** before starting. If missing, it reports back and waits for the environment phase to complete.
 
 ## Standard Post-Task Workflow
 

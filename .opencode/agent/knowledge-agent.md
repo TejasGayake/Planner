@@ -1,5 +1,5 @@
 ---
-description: Reads, indexes, and summarizes project_info/ content. Other agents delegate to this agent for project context instead of reading files themselves.
+description: Reads, indexes, and summarizes project_info/ content including environment. Other agents delegate to this agent for project context.
 mode: subagent
 permission:
   read: allow
@@ -26,7 +26,10 @@ When asked about the project:
 - "How is the architecture?" → read `project_info/architecture.md`
 - "What decisions have been made?" → read `project_info/decisions/`
 - "Show me the design reference" → list files in `project_info/designs/`
-- "I need full context for building X" → read all spec + architecture files and summarize just the parts relevant to X
+- "What's the environment setup?" → read `project_info/environment.md`
+- "How do I run this project?" → read `project_info/environment.md`
+- "Are dependencies installed?" → read `project_info/environment.md` + check if .venv/node_modules/target exists
+- "I need full context for building X" → read spec + architecture + environment, summarize only what's relevant to X
 
 ## Guidelines
 

@@ -18,14 +18,14 @@ cd G:\GT\planner
 .\resume.ps1
 
 # Or read the files directly
-Get-Content .\session_state.md -Head 30   # see last topic & next step
-Get-Content .\PROGRESS.json | ConvertFrom-Json | Select-Object -ExpandProperty phases  # see build status
+Get-Content .\project_info\session_state.md -Head 30
+Get-Content .\PROGRESS.json | ConvertFrom-Json | Select-Object -ExpandProperty phases
 ```
 
 ### Step 3 — Tell the AI
 Paste this to any AI coding assistant:
 
-> "Resume the Job Tracker Android App project from G:\GT\planner. Read session_state.md and info.md for full context. The spec is complete. Start Phase 1: generate the Android project scaffold (Kotlin + Jetpack Compose)."
+> "Resume the Job Tracker Android App project from G:\GT\planner. Read project_info/session_state.md and project_info/info.md for full context. The spec is complete. Start Phase 1: generate the Android project scaffold (Kotlin + Jetpack Compose)."
 
 ## Resume Commands
 
@@ -43,9 +43,9 @@ This reads `PROGRESS.json`, finds pending phases, and launches the next one.
 
 | File | What it tells you |
 |------|-------------------|
-| `session_state.md` | Full context: last topic, decisions, next step |
+| `project_info/session_state.md` | Full context: last topic, decisions, next step |
 | `PROGRESS.json` | Build phase status (pending/done/failed) |
-| `info.md` | 1549-line master spec — everything about the app |
+| `project_info/info.md` | 1549-line master spec — everything about the app |
 
 ## Quick Context
 
