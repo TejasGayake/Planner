@@ -1,0 +1,14 @@
+{
+  "multiProject": false,
+  "projects": [
+    {
+      "name": "default",
+      "path": ".",
+      "techStack": {
+        "language": "",
+        "framework": "",
+        "packageManager": ""
+      }
+    }
+  ]
+}
