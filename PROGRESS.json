@@ -1,0 +1,59 @@
+{
+  "project": "Job Tracker Android App",
+  "version": 1,
+  "lastUpdated": "2026-06-11T00:00:00Z",
+  "phases": [
+    {
+      "id": 1,
+      "name": "Scaffold Project",
+      "status": "pending",
+      "agent": "scaffolder",
+      "parallel": false,
+      "dependencies": []
+    },
+    {
+      "id": 2,
+      "name": "Data Layer",
+      "status": "pending",
+      "agent": "data-layer",
+      "parallel": true,
+      "dependencies": [1]
+    },
+    {
+      "id": 3,
+      "name": "Parser Engine",
+      "status": "pending",
+      "agent": "parser-engine",
+      "parallel": true,
+      "dependencies": [1]
+    },
+    {
+      "id": 4,
+      "name": "UI Design",
+      "status": "pending",
+      "agent": "ui-designer",
+      "parallel": true,
+      "dependencies": [1]
+    },
+    {
+      "id": 5,
+      "name": "Reminder Service",
+      "status": "pending",
+      "agent": "reminder-service",
+      "parallel": true,
+      "dependencies": [1]
+    },
+    {
+      "id": 6,
+      "name": "Testing",
+      "status": "pending",
+      "agent": "tester",
+      "parallel": false,
+      "dependencies": [2, 3, 4, 5]
+    }
+  ],
+  "currentPhase": null,
+  "completedPhases": [],
+  "failedPhases": [],
+  "notes": ""
+}
