@@ -5,3 +5,44 @@
 ## 2026-06-11 — Pipeline Started
 
 - Coordinator initiated full pipeline: reset → scaffold → build → test → commit
+
+## 2026-06-11 — Phase 1: Scaffold Complete
+
+- **Agent**: scaffolder
+- **Status**: ✅ Completed
+- **Created**: Android project structure (app/src, gradle configs, manifest, resources)
+- **Updated**: spec.md, architecture.md, tech-stack.md, environment.md, projects.json
+- **Next**: Builder phases (Data Layer, Parser Engine, UI Design, Reminder Service)
+
+## 2026-06-11 — Phases 2-5: Builder Complete
+
+- **Agents**: data-layer, parser-engine, ui-designer, reminder-service
+- **Status**: ✅ All Completed
+
+### Phase 2: Data Layer
+- Job.kt, Reminder.kt (Room entities)
+- JobDao.kt, ReminderDao.kt (DAOs)
+- AppDatabase.kt (Room database singleton)
+- JobRepository.kt, ReminderRepository.kt (Repository layer)
+
+### Phase 3: Parser Engine
+- JobParser.kt (20+ regex patterns for company, title, location, salary, type)
+- ShareReceiverActivity.kt (handles ACTION_SEND intents)
+- OcrProcessor.kt (ML Kit text recognition)
+- UrlScraper.kt (Jsoup URL extraction)
+
+### Phase 4: UI Design
+- Theme (Color.kt, Type.kt, Theme.kt) — Liquid Glass iOS 26 palette
+- Components (GlassCard, GlassButton, GlassInput, GlassMorphism, BlobBackground, etc.)
+- Screens (Dashboard, AddEditJob, JobDetail, Calendar, Settings)
+- ViewModels (HomeViewModel, JobDetailViewModel, AddEditJobViewModel, CalendarViewModel, SettingsViewModel)
+- Navigation (JobTrackerApp.kt with NavHost, MainActivity.kt)
+
+### Phase 5: Reminder Service
+- NotificationHelper.kt (4 notification channels)
+- ReminderWorker.kt (WorkManager CoroutineWorker)
+- ReminderScheduler.kt (schedule/cancel reminders)
+- CalendarSyncManager.kt (CalendarContract CRUD)
+- ReminderBootReceiver.kt (re-schedule after reboot)
+
+- **Next**: Testing phase

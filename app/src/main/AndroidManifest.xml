@@ -53,6 +53,15 @@
             </intent-filter>
         </activity>
 
+        <!-- Reminder Boot Receiver — re-schedules reminders after device reboot -->
+        <receiver
+            android:name=".reminder.ReminderBootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

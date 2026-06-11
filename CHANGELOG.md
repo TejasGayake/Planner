@@ -12,6 +12,11 @@
 - .gitignore with Android defaults
 - project_info/ files: spec.md, architecture.md, tech-stack.md, environment.md
 - projects.json with Job Tracker entry
+- **Data Layer**: Room entities (Job, Reminder), DAOs (JobDao, ReminderDao), AppDatabase, JobRepository, ReminderRepository
+- **Parser Engine**: JobParser (regex parsing), ShareReceiverActivity (share intent), OcrProcessor (ML Kit OCR), UrlScraper (Jsoup URL scraping)
+- **UI Design**: Liquid Glass theme (Color, Type, Theme), Components (GlassCard, GlassButton, GlassInput, GlassMorphism, BlobBackground, FilterPill, JobListItem, StatisticsCard, StatusStepper), Screens (Dashboard, AddEditJob, JobDetail, Calendar, Settings), ViewModels (HomeViewModel, AddEditJobViewModel, JobDetailViewModel, CalendarViewModel, SettingsViewModel), Navigation (MainActivity, JobTrackerApp)
+- **Reminder Service**: NotificationHelper (channels), ReminderWorker (WorkManager), ReminderScheduler, CalendarSyncManager, ReminderBootReceiver (auto-reschedule on boot)
+- Updated BUILD_LOG.md and PROGRESS.json tracking all phase completions
 
 ### Changed
 

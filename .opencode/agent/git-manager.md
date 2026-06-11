@@ -49,7 +49,7 @@ If `.git` doesn't exist:
 3. Initial commit: `git add -A && git commit -m "chore(init): initial project setup"`
 
 If no remote is configured:
-- Report: "No remote set. Add one with: git remote add origin <url>"
+- Report: "No remote set. Add one with: git remote add origin https://github.com/TejasGayake/Planner.git"
 
 ## Error Handling
 
