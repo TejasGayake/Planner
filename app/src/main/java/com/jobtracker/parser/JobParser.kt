@@ -28,19 +28,22 @@ class JobParser {
     private val companyPatterns = listOf(
         // Explicit labels: "Company: Acme Corp", "Organization: Foo"
         Regex(
-            """(?:Company|Company Name|Organization|Org|Firm|Firm Name)[:\s-]*\n*(.+?)(?:\n|$)""",
+            """(?:Company Name|Company|Organization|Org|Firm Name|Firm)[:\s-]*\n*(.+?)(?:\n|$)""",
             RegexOption.IGNORE_CASE
         ),
         // "at Google" / "@Google"
         Regex(
             """(?:at|@)\s*([A-Z][A-Za-z0-9\s&.]+)(?:\s|,|\.|\n|$)"""
         ),
-        // Leading company name with known suffix
+        // "for Company" / "with Company" at end of phrase (not followed by another word)
         Regex(
-            """^([A-Z][A-Za-z0-9\s&.]{3,}(?:Technologies|Tech|Solutions|Services|Consulting|Labs|Inc|Ltd|Pvt|Limited|Corp|Corporation|Group|Enterprises|Industries))""",
-            RegexOption.IGNORE_CASE
+            """\b(?:for|with)\s+([A-Z][A-Za-z0-9&.]+)(?:\s*,\s*|\.|\n|$)"""
         ),
-        // "Hiring X for Y" → capture the hiring company before the role
+        // Leading company name with known suffix on any line (suffix is mandatory)
+        Regex(
+            """(?m)^\s*([A-Z][A-Za-z0-9&.]{2,}(?:[^\S\n]+[A-Z][A-Za-z0-9&.]+)*(?:\s+(?i:Technologies|Tech|Solutions|Services|Consulting|Labs|Inc|Ltd|Pvt|Limited|Corp|Corporation|Group|Enterprises|Industries)))(?:\s|$)"""
+        ),
+        // "Hiring X for Y" → capture the role being hired for
         Regex(
             """(?:Hiring|Recruiting|Looking for|Wanted|Vacancy|Opening|Requirement|Need|Urgently\s+hiring)\s+(?:for\s+)?(?:a\s+|an\s+)?([A-Z][A-Za-z0-9\s&.]+?)(?:\s*[-–—]\s*|\s+(?:for|in|at|located|based|experience|salary|location))""",
             RegexOption.IGNORE_CASE

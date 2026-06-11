@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
 @Entity(
     tableName = "reminders",
@@ -15,6 +16,7 @@ import androidx.room.PrimaryKey
     )],
     indices = [Index("jobId")]
 )
+@Serializable
 data class Reminder(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val jobId: Long,

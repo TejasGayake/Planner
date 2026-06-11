@@ -243,19 +243,21 @@ fun JobDetailScreen(
                         Spacer(modifier = Modifier.height(12.dp))
 
                         // Location
-                        if (!job!!.location.isNullOrBlank()) {
+                        val location = job?.location
+                        if (!location.isNullOrBlank()) {
                             DetailRow(
                                 icon = Icons.Default.LocationOn,
-                                label = job!!.location,
+                                label = location,
                                 iconTint = WarmAmber
                             )
                         }
 
                         // Salary
-                        if (!job!!.salary.isNullOrBlank()) {
+                        val salary = job?.salary
+                        if (!salary.isNullOrBlank()) {
                             DetailRow(
                                 icon = Icons.Default.Work,
-                                label = job!!.salary,
+                                label = salary,
                                 iconTint = VibrantMint
                             )
                         }

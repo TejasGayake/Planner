@@ -62,6 +62,11 @@ android {
     }
 }
 
+// Use JUnit 5 (Jupiter) platform for unit tests
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+}
+
 dependencies {
     // Compose BOM
     val composeBom = platform(libs.compose.bom)

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Briefcase icon representing job tracking -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,36 L40,30 C40,27.2 42.2,25 45,25 L63,25 C65.8,25 68,27.2 68,30 L68,36 L76,36 C78.2,36 80,37.8 80,40 L80,72 C80,74.2 78.2,76 76,76 L32,76 C29.8,76 28,74.2 28,72 L28,40 C28,37.8 29.8,36 32,36 Z M48,36 L60,36 L60,30 L48,30 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,56 C57.3,56 60,53.3 60,50 C60,46.7 57.3,44 54,44 C50.7,44 48,46.7 48,50 C48,53.3 50.7,56 54,56 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,64 L66,64 L66,62 C66,58.7 60.6,56 54,56 C47.4,56 42,58.7 42,62 Z" />
+</vector>

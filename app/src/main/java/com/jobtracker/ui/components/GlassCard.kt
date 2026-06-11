@@ -3,8 +3,10 @@ package com.jobtracker.ui.components
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -49,35 +51,45 @@ fun GlassCard(
         label = "glassCardPressScale"
     )
 
-    Card(
-        onClick = onClick ?: { },
+    Box(
         modifier = modifier
             .scale(pressScale)
-            .glassBackground(cornerRadius = cornerRadius),
-        shape = RoundedCornerShape(cornerRadius),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp
-        ),
-        shadowElevation = 12.dp,
-        interactionSource = interactionSource
+            .then(
+                if (onClick != null) {
+                    Modifier.clickable(
+                        interactionSource = interactionSource,
+                        indication = null,
+                        onClick = onClick
+                    )
+                } else {
+                    Modifier
+                }
+            )
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(contentPadding)
+        Card(
+            shape = RoundedCornerShape(cornerRadius),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.Transparent
+            ),
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 8.dp
+            )
         ) {
-            if (title != null) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = GlassWhite.copy(alpha = 0.9f),
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(contentPadding)
+            ) {
+                if (title != null) {
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = GlassWhite.copy(alpha = 0.9f),
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                }
+                content()
             }
-            content()
         }
     }
 }

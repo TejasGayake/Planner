@@ -5,6 +5,14 @@
 ## [Unreleased]
 
 ### Added
+- **Tests**: 123 unit tests across parser, DAO, and repository layers
+  - JobParserTest.kt (68 tests) — real-world Indian job posting parsing scenarios
+  - JobDaoTest.kt (23 tests) — DAO CRUD operations with MockK
+  - JobRepositoryTest.kt (16 tests) — repository delegation verification
+  - ReminderRepositoryTest.kt (16 tests) — reminder repository verification
+- New project resources: drawable (launcher icons), mipmap-anydpi-v26
+- .obsidian/ workspace and graph config
+- gradlew / gradlew.bat wrapper scripts
 - Initial project setup
 - Android project directory structure (app/src/main/java/com/jobtracker/)
 - Config files: build.gradle.kts, settings.gradle.kts, gradle.properties, gradle wrapper, version catalog

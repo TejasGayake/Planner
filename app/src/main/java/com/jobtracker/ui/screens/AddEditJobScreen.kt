@@ -46,6 +46,7 @@ import com.jobtracker.ui.components.BlobBackground
 import com.jobtracker.ui.components.GlassButton
 import com.jobtracker.ui.components.GlassCard
 import com.jobtracker.ui.components.GlassInput
+import com.jobtracker.ui.components.glassBackground
 import com.jobtracker.ui.theme.GlassWhite
 import com.jobtracker.ui.theme.GlassWhiteLight
 import com.jobtracker.ui.theme.SoftLavender

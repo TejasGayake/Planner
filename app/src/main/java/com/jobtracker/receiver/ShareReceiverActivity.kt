@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import com.jobtracker.parser.JobParser
+import com.jobtracker.parser.ParsedJob
 import kotlinx.serialization.json.Json
 
 /**
@@ -12,7 +13,7 @@ import kotlinx.serialization.json.Json
  *
  * Supports:
  * - `text/plain` — parses the shared text directly via [JobParser]
- * - `image/*` — passes the image URI to the main activity for OCR processing
+ * - `image/star` mime type — passes the image URI to the main activity for OCR processing
  * - `ACTION_SEND_MULTIPLE` — processes the first image from a batch share
  */
 class ShareReceiverActivity : ComponentActivity() {
@@ -77,7 +78,7 @@ class ShareReceiverActivity : ComponentActivity() {
      */
     private fun navigateToJobDetail(sharedText: String) {
         val parsedJob = JobParser().parse(sharedText, detectSource(sharedText))
-        val jsonString = json.encodeToString(parsedJob)
+        val jsonString = json.encodeToString(ParsedJob.serializer(), parsedJob)
 
         startActivity(
             Intent(this, com.jobtracker.ui.MainActivity::class.java).apply {

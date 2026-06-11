@@ -2,8 +2,8 @@ package com.jobtracker.reminder
 
 import android.content.Context
 import androidx.work.CoroutineWorker
+import androidx.work.ListenableWorker
 import androidx.work.WorkerParameters
-import androidx.work.Result
 import com.jobtracker.data.db.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -18,7 +18,7 @@ class ReminderWorker(
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
 
-    override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
+    override suspend fun doWork(): ListenableWorker.Result = withContext(Dispatchers.IO) {
         try {
             val db = AppDatabase.getInstance(applicationContext)
             val reminderDao = db.reminderDao()
@@ -36,9 +36,9 @@ class ReminderWorker(
                 )
             }
 
-            Result.success()
+            ListenableWorker.Result.success()
         } catch (e: Exception) {
-            Result.retry()
+            ListenableWorker.Result.retry()
         }
     }
 }

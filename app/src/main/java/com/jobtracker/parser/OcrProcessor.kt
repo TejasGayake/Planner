@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.TextRecognizerOptions
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
@@ -55,7 +55,7 @@ private suspend fun <T> com.google.android.gms.tasks.Task<T>.await(): T =
             continuation.resume(result) { /* already completed */ }
         }
         addOnFailureListener { exception ->
-            continuation.resumeWithException(exception)
+            continuation.resumeWith(Result.failure(exception))
         }
         continuation.invokeOnCancellation {
             // Task cancellation is handled upstream
