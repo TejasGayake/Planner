@@ -12,27 +12,27 @@
   "command": {
     "build": {
       "description": "ONE-CLICK BUILD — runs the entire project pipeline from start to finish: scaffold, build all layers in parallel, test, and commit.",
-      "prompt": "This is the full automated build command. Do the following in order: STEP 1: Tell the logger to reset PROGRESS.json to initial state (all phases pending). STEP 2: Launch scaffolder subagent to create the project skeleton. After it finishes, tell logger and git-manager to log and commit. STEP 3: Launch data-layer, parser-engine, ui-designer, and reminder-service ALL IN PARALLEL in a single message. After ALL finish, tell logger and git-manager. STEP 4: Launch tester subagent. After it finishes, tell logger and git-manager. STEP 5: Tell the user a full summary of what was built, what each agent produced, and the final commit hash."
+      "template": "This is the full automated build command. Do the following in order: STEP 1: Tell the logger to reset PROGRESS.json to initial state (all phases pending). STEP 2: Launch scaffolder subagent to create the project skeleton. After it finishes, tell logger and git-manager to log and commit. STEP 3: Launch data-layer, parser-engine, ui-designer, and reminder-service ALL IN PARALLEL in a single message. After ALL finish, tell logger and git-manager. STEP 4: Launch tester subagent. After it finishes, tell logger and git-manager. STEP 5: Tell the user a full summary of what was built, what each agent produced, and the final commit hash."
     },
     "resume": {
       "description": "Resume the project build from where it left off — reads PROGRESS.json and launches pending phases in parallel.",
-      "prompt": "Read PROGRESS.json and BUILD_LOG.md. Determine which phases are pending or failed. Launch the next available phase(s) by delegating to the appropriate subagents in parallel. After each subagent completes, call the logger to update state and the git-manager to commit. Continue until all phases are done or you hit a blocker."
+      "template": "Read PROGRESS.json and BUILD_LOG.md. Determine which phases are pending or failed. Launch the next available phase(s) by delegating to the appropriate subagents in parallel. After each subagent completes, call the logger to update state and the git-manager to commit. Continue until all phases are done or you hit a blocker."
     },
     "status": {
       "description": "Show current build progress — what's done, what's pending, what's failed.",
-      "prompt": "Read PROGRESS.json and BUILD_LOG.md. Present a clear summary of the project build state: completed phases, in-progress work, failed phases with reasons, and what's next. Use a simple checklist format."
+      "template": "Read PROGRESS.json and BUILD_LOG.md. Present a clear summary of the project build state: completed phases, in-progress work, failed phases with reasons, and what's next. Use a simple checklist format."
     },
     "reset": {
       "description": "Reset all build progress back to the beginning.",
-      "prompt": "Tell the logger agent to reset PROGRESS.json — set all phase statuses to 'pending', clear completedPhases and failedPhases, set currentPhase to null, and append a reset entry to BUILD_LOG.md. Then tell git-manager to commit the reset with message 'chore(progress): reset build state'."
+      "template": "Tell the logger agent to reset PROGRESS.json — set all phase statuses to 'pending', clear completedPhases and failedPhases, set currentPhase to null, and append a reset entry to BUILD_LOG.md. Then tell git-manager to commit the reset with message 'chore(progress): reset build state'."
     },
     "commit": {
       "description": "Manually commit all pending changes to git.",
-      "prompt": "Run 'git status' to show what's pending. Then call the git-manager subagent to stage all changes and commit with a message describing what changed. Report the commit hash and summary to the user."
+      "template": "Run 'git status' to show what's pending. Then call the git-manager subagent to stage all changes and commit with a message describing what changed. Report the commit hash and summary to the user."
     },
     "push": {
       "description": "Push committed changes to GitHub remote.",
-      "prompt": "Call the git-manager subagent to push to the remote. If no remote is configured, explain how to set one up (gh repo create or git remote add). If push succeeds, report the result."
+      "template": "Call the git-manager subagent to push to the remote. If no remote is configured, explain how to set one up (gh repo create or git remote add). If push succeeds, report the result."
     }
   }
 }
