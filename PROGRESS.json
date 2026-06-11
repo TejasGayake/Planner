@@ -1,12 +1,13 @@
 {
   "project": "Job Tracker Android App",
   "version": 2,
-  "lastUpdated": "2026-06-11",
+  "lastUpdated": "2026-06-11T08:15:00Z",
+  "currentPhase": null,
   "phases": [
     {
       "id": 1,
       "name": "Scaffold Project",
-      "status": "pending",
+      "status": "completed",
       "agent": "scaffolder",
       "parallel": false,
       "dependencies": []
@@ -52,8 +53,7 @@
       "dependencies": [2, 3, 4, 5]
     }
   ],
-  "currentPhase": null,
   "completedPhases": [],
   "failedPhases": [],
-  "notes": "Spec complete (info.md, 1549 lines). Liquid Glass + iOS 26 design fully spec'd. All phases ready for code generation. See session_state.md for full resume context."
+  "notes": "Build reset by coordinator — starting fresh pipeline run."
 }

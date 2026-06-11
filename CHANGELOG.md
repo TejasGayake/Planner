@@ -6,6 +6,12 @@
 
 ### Added
 - Initial project setup
+- Android project directory structure (app/src/main/java/com/jobtracker/)
+- Config files: build.gradle.kts, settings.gradle.kts, gradle.properties, gradle wrapper, version catalog
+- AndroidManifest.xml, resource files (strings.xml, themes.xml)
+- .gitignore with Android defaults
+- project_info/ files: spec.md, architecture.md, tech-stack.md, environment.md
+- projects.json with Job Tracker entry
 
 ### Changed
 

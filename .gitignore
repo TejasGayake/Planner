@@ -1,17 +1,38 @@
+# Android / Gradle
 *.iml
-.gradle
+.gradle/
+/build/
+/app/build/
 /local.properties
-/.idea
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
-/app/build
+/.idea/
 .idea/
 *.apk
 *.aab
 *.hprof
 *.keystore
+*.jks
+*.log
+captures/
+.externalNativeBuild/
+.cxx/
+*.cxx
+
+# Kotlin
+.kotlin/
+
+# macOS
+.DS_Store
+
+# Gradle wrapper (keep the properties but not the jar)
+/gradle/wrapper/gradle-wrapper.jar
+
+# Build cache
 !.gradle/buildOutput.json
+
+# Generated sources (KSP)
+/app/build/generated/
+
+# Signing (keep local debug keystore out of version control)
+*.jks
+*.keystore
+debug.keystore

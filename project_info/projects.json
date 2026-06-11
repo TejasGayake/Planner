@@ -2,12 +2,14 @@
   "multiProject": false,
   "projects": [
     {
-      "name": "default",
+      "name": "JobTracker",
       "path": ".",
       "techStack": {
-        "language": "",
-        "framework": "",
-        "packageManager": ""
+        "language": "Kotlin 1.9.22",
+        "framework": "Jetpack Compose (BOM 2024.02.00)",
+        "database": "Room 2.6.1",
+        "buildSystem": "Gradle 8.4 with Kotlin DSL",
+        "packageManager": "Gradle Wrapper"
       }
     }
   ]

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Job Tracker</string>
+    <string name="share_receive_title">Import Job</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="job_detail_title">Job Details</string>
+    <string name="settings_title">Settings</string>
+    <string name="filter_search_title">Filter &amp; Search</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_share">Share</string>
+    <string name="status_saved">Saved</string>
+    <string name="status_applied">Applied</string>
+    <string name="status_interview">Interview</string>
+    <string name="status_offer">Offer</string>
+    <string name="status_rejected">Rejected</string>
+    <string name="label_company">Company</string>
+    <string name="label_role">Role</string>
+    <string name="label_salary">Salary</string>
+    <string name="label_location">Location</string>
+    <string name="label_deadline">Deadline</string>
+    <string name="label_notes">Notes</string>
+    <string name="label_status">Status</string>
+    <string name="label_reminder">Reminder</string>
+    <string name="total_jobs">Total Jobs</string>
+    <string name="no_jobs_yet">No jobs tracked yet. Share a job posting to get started!</string>
+    <string name="permission_calendar_title">Calendar Permission</string>
+    <string name="permission_calendar_message">Job Tracker needs calendar access to set interview reminders.</string>
+</resources>
