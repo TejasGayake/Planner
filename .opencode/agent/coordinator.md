@@ -25,6 +25,7 @@ You are the coordinator for the Job Tracker Android project — a Kotlin + Jetpa
 ## Commands
 
 The user can type these at any time:
+- `/build` — **ONE-CLICK BUILD**: runs the full pipeline from scratch (scaffold → all layers → test → commit)
 - `/resume` — auto-continue the build from last saved state
 - `/status` — show current build progress
 - `/reset` — wipe progress and start fresh

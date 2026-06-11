@@ -10,6 +10,10 @@
     "grep": "allow"
   },
   "command": {
+    "build": {
+      "description": "ONE-CLICK BUILD — runs the entire project pipeline from start to finish: scaffold, build all layers in parallel, test, and commit.",
+      "prompt": "This is the full automated build command. Do the following in order: STEP 1: Tell the logger to reset PROGRESS.json to initial state (all phases pending). STEP 2: Launch scaffolder subagent to create the project skeleton. After it finishes, tell logger and git-manager to log and commit. STEP 3: Launch data-layer, parser-engine, ui-designer, and reminder-service ALL IN PARALLEL in a single message. After ALL finish, tell logger and git-manager. STEP 4: Launch tester subagent. After it finishes, tell logger and git-manager. STEP 5: Tell the user a full summary of what was built, what each agent produced, and the final commit hash."
+    },
     "resume": {
       "description": "Resume the project build from where it left off — reads PROGRESS.json and launches pending phases in parallel.",
       "prompt": "Read PROGRESS.json and BUILD_LOG.md. Determine which phases are pending or failed. Launch the next available phase(s) by delegating to the appropriate subagents in parallel. After each subagent completes, call the logger to update state and the git-manager to commit. Continue until all phases are done or you hit a blocker."

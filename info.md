@@ -628,7 +628,226 @@ items.forEachIndexed { index, item ->
 
 ---
 
-### 4.13 Android Implementation Libraries
+### 4.4.7 iOS 26 Complete Material Stack (Reference)
+
+The iOS 26 Liquid Glass material is built from 6 visual layers that work in concert. This is the target specification.
+
+| Layer | Purpose | Parameter Values | Android Equivalent |
+|-------|---------|-----------------|--------------------|
+| **Dynamic Translucency** | Real-time background blur | Blur radius: moderate (analogous to `.systemUltraThinMaterial`) | `RenderEffect.createBlurEffect()` or AGSL backdrop sampling |
+| **Color Reflection** | Glass absorbs surrounding hue | `.glassEffect(.regular.tint(.myColor))` — .clear for minimal, .regular for prominent | `ColorFilter.tint(color, BlendMode.SrcAtop)` on GraphicsLayer |
+| **Edge Refraction & Distortion** | Light bending through curved glass | IOR ≈ 1.5; distortion increases near capsule edges | AGSL: `offset = (uv - center) * IOR * (1.0 - dist)` |
+| **Specular Highlights** | Directional glare following touch | Intensity responds to finger position | Shader uniform `u_lightPos` bound to touch coordinates |
+| **Fresnel Reflections** | Edge lighting that intensifies at grazing angles | Enabled by default; most visible on dark backgrounds | AGSL: `fresnel = pow(1.0 - dist, 2.0)` |
+| **Chromatic Dispersion** | Subtle prismatic color separation at edges | Very subtle — barely noticeable unless looked for | AGSL: separate R/G/B texture samples with increasing offsets |
+
+**Background compatibility:** Glass samples whatever is behind it. Vibrant gradients or photos work best. Avoid extremely busy wallpapers for legibility. Dark mode reduces overall brightness but maintains reflective quality.
+
+### 4.4.8 Shape Merging & Glass Identity
+
+#### Shape Types
+
+| Shape | Use Case | Code |
+|-------|----------|------|
+| **Capsule** | Default for buttons, pills, tags | `glassEffect()` (no `in:` parameter) |
+| **Rounded Rect** | Cards, panels, containers | `glassEffect(in: .rect(cornerRadius: 16))` |
+| **Circle** | Icons, avatars, status indicators | `glassEffect(in: .circle)` requires square frame |
+
+#### Container Merging Rules
+
+- Always wrap multiple glass elements in `GlassEffectContainer` — otherwise each renders independently and won't morph fluidly.
+- Apply `.glassEffect()` to child views, not the container itself.
+- `GlassEffectContainer(spacing: CGFloat)` controls merging distance:
+  - **8–12**: Elements blend only when nearly touching
+  - **24–32**: Balanced blending (recommended default)
+  - **50+**: Elements blend even when far apart
+
+#### Identity Tracking for Morphing
+
+```kotlin
+// Android equivalent of iOS @Namespace + glassEffectID
+// Compose: use key() or remember { mutableStateOf() } for identity
+@Namespace private var namespace  // iOS SwiftUI concept
+
+// iOS: assign stable identity
+.glassEffectID("uniqueID", in: namespace)
+
+// Android manual equivalent:
+// Use Modifier.key() and track morphing via AnimatedVisibility + animateDpAsState
+```
+
+**Transition types in iOS 26:**
+1. **Add/Remove morphing** — Elements appear by expanding from an existing glass element
+2. **Reposition morphing** — Elements flow between positions (iOS: `matchedGeometryEffect`)
+3. **Shape change morphing** — Capsule smoothly expands to roundedRect as content grows
+
+### 4.4.9 iOS 26 Interactive Physics — Exact Reference
+
+When a user touches a glass element, **two independent events** occur simultaneously:
+
+| Response | Effect | Android Implementation |
+|----------|--------|----------------------|
+| **Directional Glow** | Light-catching highlight at finger position | AGSL: bind `u_lightPos` from `Modifier.pointerInput` |
+| **Physical Spring-Scale** | Gentle squish / bottom-anchored expansion | `animateFloatAsState` with spring + scale + offset |
+
+#### Interaction Modes
+
+```
+.full      → Both glow + scale (default — Apple News / Safari behavior)
+.glowOnly  → Directional glow only (flat nav bars that must stay stable)
+.scaleOnly → Spring scaling only (when glow might clash with branding)
+```
+
+#### Apple's Reference Spring Parameters (Critically Damped)
+
+```kotlin
+// iOS 26 native (SwiftUI reference):
+// interpolatingSpring(mass: 1.0, stiffness: 180.0, damping: 27.0, initialVelocity: 0.0)
+
+// Android equivalent:
+spring(
+    dampingRatio = 1.0f,    // ≥ 1.0 = critically damped, zero bounce
+    stiffness   = 180f      // Apple's reference stiffness
+)
+
+// Visual behavior:
+// - Mass: 1.0
+// - Stiffness: 180 (softer than default Compose spring)
+// - Damping: 27 (ratio > 1 eliminates bounce, smooth settling)
+// - Press: scale 1.0 → 0.97, bottom-anchored (translateY += 2dp)
+// - Release: scale 0.97 → 1.0, translateY → 0
+// - The glass behaves like a fluid-filled capsule — "squishes" under pressure
+```
+
+> **Note:** The current animation spec in 4.7 uses `spring(0.825, 300)` (under-damped, stiffer). For exact iOS 26 matching, prefer `spring(dampingRatio=1.0f, stiffness=180f)`.
+
+### 4.4.10 SwiftUI Reference Implementation (iOS 26 Target Spec)
+
+This is the exact iOS 26 behavior we are replicating on Android. Every animation, response, and visual detail below must be matched.
+
+```swift
+// SwiftUI — iOS 26 native. Android must replicate this behavior exactly.
+struct LiquidGlassCard: View {
+    @State private var isExpanded = false
+    @Namespace private var glassNamespace
+
+    var body: some View {
+        ZStack {
+            // Dynamic gradient background to showcase glass refraction
+            LinearGradient(
+                colors: [.purple, .blue, .cyan, .mint],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            ).ignoresSafeArea()
+
+            GlassEffectContainer(spacing: 24) {
+                VStack(spacing: 20) {
+                    // Title card with edge distortion
+                    Text("Liquid Glass")
+                        .font(.largeTitle.weight(.bold))
+                        .foregroundStyle(.white).padding()
+                        .glassEffect(.regular.tint(.purple).interactive(),
+                                     in: .rect(cornerRadius: 20))
+                        .glassEffectID("title", in: glassNamespace)
+
+                    // Interactive button with full physics
+                    Button {
+                        withAnimation(.interpolatingSpring(
+                            mass: 1.0, stiffness: 180,
+                            damping: 27, initialVelocity: 0.0
+                        )) { isExpanded.toggle() }
+                    } label: {
+                        HStack {
+                            Image(systemName: isExpanded ? "xmark" : "plus")
+                            Text(isExpanded ? "Close" : "Expand")
+                        }
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 24).padding(.vertical, 12)
+                    }
+                    .buttonStyle(.glassProminent)
+                    .glassEffectID("expandButton", in: glassNamespace)
+
+                    // Morphing content panel
+                    if isExpanded {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Morphing Glass").font(.title2.weight(.bold))
+                            Text("This panel morphs from the button above...")
+                                .font(.body)
+                        }
+                        .foregroundColor(.white).padding()
+                        .glassEffect(.regular.tint(.blue).interactive(),
+                                     in: .rect(cornerRadius: 16))
+                        .glassEffectID("expandedContent", in: glassNamespace)
+                        .transition(.asymmetric(
+                            insertion: .opacity.combined(with: .scale(scale: 0.9)),
+                            removal: .opacity.combined(with: .scale(scale: 0.9))
+                        ))
+                    }
+                }.padding()
+            }
+        }
+    }
+}
+
+// Key Android implementation targets:
+// 1. GlassEffectContainer(spacing: 24) → GlassContainer with spacing parameter
+// 2. glassEffect(.regular.tint(...).interactive()) → GlassBox with tint + interactive touch
+// 3. glassEffectID(...) → unique key per composable for morphing identity
+// 4. interpolatingSpring(mass:1, stiffness:180, damping:27) → spring(dampingRatio=1.0, stiffness=180)
+// 5. Morphing add/remove → AnimatedVisibility + animateDpAsState for shape transition
+// 6. .glassProminent button style → Custom Modifier with elevated glass appearance
+```
+
+### 4.4.11 AI Prompt Template (For Instructing Code Generation Models)
+
+Copy this when asking an AI to generate the Android Liquid Glass UI:
+
+```
+Build an Android Jetpack Compose screen that replicates the iOS 26 Liquid Glass UI exactly.
+
+Requirements:
+1. Glass cards: semi-transparent rgba(255,255,255,0.72) background, 28dp continuous rounded corners,
+   backdrop blur 20px (via RenderEffect), 0.5dp white border, soft shadow blur 12dp y 4dp.
+2. Animated gradient blob background: two SVG paths morphing on 6s/8s cycles using Compose Canvas.
+3. Spring physics: every interactive element uses spring(dampingRatio=1.0, stiffness=180).
+   On press: scale 1→0.97, bottom-anchored squish. On release: spring back.
+4. Touch-following specular highlight: shader uniform bound to pointer position.
+5. Fresnel edge glow: stronger at capsule boundaries, color rgba(0.3,0.5,0.8,0.4).
+6. Chromatic dispersion: subtle RGB separation at element edges (offset ~0.02).
+7. Shape morphing: capsule↔roundedRect transitions via animateDpAsState.
+8. Glass container: multiple glass elements wrapped in GlassContainer for distance-based merging.
+9. Hierarchy: content sits UNDER glass (glass is for navigation layers and floating controls only).
+10. Background: vibrant gradient that showcases the glass refraction effect.
+
+Tech stack: Kotlin, Jetpack Compose, AGSL shaders, RenderEffect.
+Use AndroidLiquidGlassView library or custom AGSL shader. All free/no paid APIs.
+```
+
+### 4.4.12 Design Philosophy Summary (iOS 26 Core Principles)
+
+```
+1. Content First
+   → Glass is used for navigation layers and floating controls.
+   → Content sits underneath as the foundation.
+   → Glass exists to enhance content, not replace it.
+
+2. Dynamic Material
+   → Glass reflects and refracts its surroundings.
+   → It intelligently adapts between light and dark environments.
+   → The material is alive — it responds to touch, motion, and context.
+
+3. Depth & Dimensionality
+   → Physical layers inspired by visionOS.
+   → Real-time rendering creates a sense of presence.
+   → Elements exist in a 3D space, not a flat 2D surface.
+
+4. Liquid Behavior
+   → Glass doesn't just blur — it flows.
+   → Shapes merge when close, morph between states, and ripple on touch.
+   → The material has physical properties: squish, spring, stretch.
+```
+
+---
 
 #### Library Comparison
 
@@ -1312,8 +1531,18 @@ dependencies {
 - Added Compose implementation snippets (glass modifier, spring spec, staggered entrance)
 - Fixed broken sub-section numbering in Section 5 (Data Models): 4.x → 5.x
 
+### 2026-06-11 — iOS 26 Complete Detail Integration
+- Added missing iOS 26 details from ui_related_details.md as subsections 4.4.7–4.4.12:
+  - 4.4.7 iOS 26 Complete Material Stack (6-layer visual layers table with Android equivalents)
+  - 4.4.8 Shape Merging & Glass Identity (Capsule/RoundedRect/Circle, spacing rules 8–12 vs 50+, identity tracking)
+  - 4.4.9 iOS 26 Interactive Physics — Exact Reference (.full/.glowOnly/.scaleOnly modes, Apple's exact spring stiffness=180 damping=27, critically damped zero-bounce)
+  - 4.4.10 SwiftUI Reference Implementation (complete iOS 26 target code with Android mapping annotations)
+  - 4.4.11 AI Prompt Template (copy-pasteable prompt for instructing code generation models)
+  - 4.4.12 Design Philosophy Summary (4 core iOS 26 principles: Content First, Dynamic Material, Depth & Dimensionality, Liquid Behavior)
+- Added note in 4.7 that current spring(0.825, 300) is under-damped; Apple reference is critically damped spring(1.0, 180)
+
 ### 2026-06-11 — Android Implementation Details Added
-- Added new subsections 4.13–4.16 to Section 4 from ui_related_details.md research:
+- Added 4.13–4.16 from ui_related_details.md research
   - 4.13 Android Implementation Libraries (5 libraries compared: AndroidLiquidGlassView, liquid-glass-android, KMPLiquidGlass, Prismal, AppleLiquidGlassForAndroid) with Gradle deps and Compose/XML code
   - 4.14 AGSL Shader — Complete Reference with full fragment shader code (refraction, chromatic dispersion, Fresnel edge glow, specular highlight) + Compose apply snippet + spring press animation code
   - 4.15 Performance Optimizations table (7 techniques with benefits)
