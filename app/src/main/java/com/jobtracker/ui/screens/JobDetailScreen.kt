@@ -65,6 +65,9 @@ import com.jobtracker.ui.theme.CoralPink
 import com.jobtracker.ui.theme.GlassWhite
 import com.jobtracker.ui.theme.GlassWhiteLight
 import com.jobtracker.ui.theme.SoftLavender
+import com.jobtracker.ui.theme.TextPrimary
+import com.jobtracker.ui.theme.TextSecondary
+import com.jobtracker.ui.theme.TextTertiary
 import com.jobtracker.ui.theme.VibrantMint
 import com.jobtracker.ui.theme.WarmAmber
 import com.jobtracker.ui.theme.iOSGreen
@@ -325,7 +328,7 @@ fun JobDetailScreen(
                             Text(
                                 text = job!!.notes!!,
                                 style = MaterialTheme.typography.bodyLarge,
-                                color = GlassWhite.copy(alpha = 0.8f)
+                                color = TextSecondary
                             )
                         }
                     }
@@ -341,7 +344,7 @@ fun JobDetailScreen(
                             Text(
                                 text = "No reminders set",
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = GlassWhiteLight.copy(alpha = 0.5f),
+                                color = TextTertiary,
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
                         } else {
@@ -368,7 +371,7 @@ fun JobDetailScreen(
                                         Text(
                                             text = formatDate(reminder.remindAt),
                                             style = MaterialTheme.typography.labelSmall,
-                                            color = GlassWhiteLight.copy(alpha = 0.6f)
+                                            color = TextTertiary
                                         )
                                     }
                                 }
@@ -527,7 +530,7 @@ private fun DetailRow(
         Text(
             text = label,
             style = MaterialTheme.typography.bodyLarge,
-            color = GlassWhite.copy(alpha = 0.85f)
+            color = TextPrimary
         )
     }
 }

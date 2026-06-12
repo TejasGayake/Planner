@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.jobtracker.ui.theme.GlassWhite
-import com.jobtracker.ui.theme.GlassWhiteLight
+import com.jobtracker.ui.theme.TextSecondary
 
 /**
  * A small glass card displaying a single statistic with icon, count, and label.
@@ -71,7 +71,7 @@ fun StatisticsCard(
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelMedium,
-                color = GlassWhite.copy(alpha = 0.7f)
+                color = TextSecondary
             )
         }
     }

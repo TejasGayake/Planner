@@ -27,6 +27,20 @@
 - Updated BUILD_LOG.md and PROGRESS.json tracking all phase completions
 
 ### Changed
+- **Color Palette Redesign**: Rebuilt `Color.kt` with WCAG AA-compliant text colors (`TextPrimary`, `TextSecondary`, `TextTertiary`) and re-mapped all semantic colors in `Theme.kt` for consistent accessibility
 
 ### Fixed
+- **Invisible UI Elements**: Fixed multiple components that were invisible or had poor contrast:
+  - `GlassMorphism.kt` — added visible borders and glass gradient backgrounds
+  - `GlassCard.kt` — applied `DarkSurface` color so cards are visibly rendered
+  - `GlassButton.kt` — fully opaque lavender buttons with proper contrast
+  - `GlassInput.kt` — visible input containers (`SlateBlue` background) with correct text colors
+  - `FilterPill.kt` — visible unselected pill backgrounds
+  - `StatusStepper.kt` — visible incomplete step indicators
+  - `JobListItem.kt` — readable date text and status badge colors
+  - `DashboardScreen.kt` — FAB visible, stat text readable
+  - `AddEditJobScreen.kt` — deadline field text contrast
+  - `JobDetailScreen.kt` — notes and reminders text contrast
+  - `CalendarScreen.kt` — day headers and selected day contrast
+  - `SettingsScreen.kt` — switches, sliders, and text contrast
 - **Crash Fix**: Added missing `JobTrackerApp` Application class (initializes notification channels on startup) — resolved `ClassNotFoundException` crash on Android 13+ when launching the APK

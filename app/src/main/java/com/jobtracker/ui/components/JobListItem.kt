@@ -37,8 +37,10 @@ import androidx.compose.ui.unit.dp
 import com.jobtracker.data.db.Job
 import com.jobtracker.ui.theme.CoralPink
 import com.jobtracker.ui.theme.CoolGray
-import com.jobtracker.ui.theme.GlassWhite
-import com.jobtracker.ui.theme.GlassWhiteLight
+import com.jobtracker.ui.theme.GlassUltraLight
+import com.jobtracker.ui.theme.TextPrimary
+import com.jobtracker.ui.theme.TextSecondary
+import com.jobtracker.ui.theme.TextTertiary
 import com.jobtracker.ui.theme.iOSGreen
 import com.jobtracker.ui.theme.iOSOrange
 import com.jobtracker.ui.theme.SoftLavender
@@ -98,7 +100,7 @@ fun JobListItem(
                     text = job.companyName,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.SemiBold,
-                    color = GlassWhite,
+                    color = TextPrimary,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -107,7 +109,7 @@ fun JobListItem(
                 Text(
                     text = job.jobTitle,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = CoolGray,
+                    color = TextSecondary,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(top = 2.dp)
@@ -129,7 +131,7 @@ fun JobListItem(
                         Text(
                             text = job.location,
                             style = MaterialTheme.typography.labelSmall,
-                            color = CoolGray,
+                            color = TextSecondary,
                             modifier = Modifier.padding(start = 2.dp, end = 8.dp),
                             maxLines = 1
                         )
@@ -176,7 +178,7 @@ fun JobListItem(
                 Text(
                     text = formatDate(job.createdAt),
                     style = MaterialTheme.typography.labelSmall,
-                    color = GlassWhiteLight.copy(alpha = 0.5f),
+                    color = TextTertiary,
                     modifier = Modifier.padding(top = 4.dp)
                 )
             }
@@ -193,7 +195,7 @@ private fun StatusBadge(status: String) {
         "Offer" -> Triple(VibrantMint.copy(alpha = 0.2f), VibrantMint, "Offer")
         "Rejected" -> Triple(CoralPink.copy(alpha = 0.2f), CoralPink, "Closed")
         "Archived" -> Triple(CoolGray.copy(alpha = 0.2f), CoolGray, "Archived")
-        else -> Triple(GlassWhiteLight.copy(alpha = 0.1f), CoolGray, status)
+        else -> Triple(GlassUltraLight, TextTertiary, status)
     }
 
     androidx.compose.foundation.layout.Box(

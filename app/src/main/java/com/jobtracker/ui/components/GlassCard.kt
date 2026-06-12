@@ -21,10 +21,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.jobtracker.ui.theme.GlassWhite
+import com.jobtracker.ui.theme.DarkSurface
+import com.jobtracker.ui.theme.TextPrimary
 
 /**
  * A reusable frosted-glass card that matches iOS 26 Liquid Glass aesthetic.
@@ -69,10 +69,10 @@ fun GlassCard(
         Card(
             shape = RoundedCornerShape(cornerRadius),
             colors = CardDefaults.cardColors(
-                containerColor = Color.Transparent
+                containerColor = DarkSurface
             ),
             elevation = CardDefaults.cardElevation(
-                defaultElevation = 8.dp
+                defaultElevation = 4.dp
             )
         ) {
             Column(
@@ -84,7 +84,7 @@ fun GlassCard(
                     Text(
                         text = title,
                         style = MaterialTheme.typography.titleMedium,
-                        color = GlassWhite.copy(alpha = 0.9f),
+                        color = TextPrimary,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                 }

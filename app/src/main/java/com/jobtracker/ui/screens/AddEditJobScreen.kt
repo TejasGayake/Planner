@@ -48,8 +48,9 @@ import com.jobtracker.ui.components.GlassCard
 import com.jobtracker.ui.components.GlassInput
 import com.jobtracker.ui.components.glassBackground
 import com.jobtracker.ui.theme.GlassWhite
-import com.jobtracker.ui.theme.GlassWhiteLight
 import com.jobtracker.ui.theme.SoftLavender
+import com.jobtracker.ui.theme.TextPrimary
+import com.jobtracker.ui.theme.TextTertiary
 import com.jobtracker.ui.viewmodel.AddEditJobViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -333,7 +334,7 @@ private fun DeadlinePicker(
                     "No deadline set"
                 },
                 style = MaterialTheme.typography.bodyLarge,
-                color = if (deadline != null) GlassWhite else GlassWhiteLight.copy(alpha = 0.5f)
+                color = if (deadline != null) TextPrimary else TextTertiary
             )
         }
 

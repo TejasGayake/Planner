@@ -23,8 +23,9 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.jobtracker.ui.theme.GlassUltraLight
 import com.jobtracker.ui.theme.GlassWhite
-import com.jobtracker.ui.theme.GlassWhiteLight
+import com.jobtracker.ui.theme.TextTertiary
 import com.jobtracker.ui.theme.iOSGreen
 import com.jobtracker.ui.theme.SoftLavender
 import com.jobtracker.ui.theme.VibrantMint
@@ -95,7 +96,7 @@ fun StatusStepper(
                             val lineColor = if (isCompleted || isCurrent) {
                                 VibrantMint
                             } else {
-                                GlassWhiteLight.copy(alpha = 0.2f)
+                                GlassUltraLight
                             }
                             drawLine(
                                 color = lineColor,
@@ -114,7 +115,7 @@ fun StatusStepper(
                         isOffer && (isCompleted || isCurrent) -> iOSGreen
                         isCompleted -> VibrantMint
                         isCurrent -> SoftLavender
-                        else -> GlassWhiteLight.copy(alpha = 0.2f)
+                        else -> GlassUltraLight
                     }
 
                     val circleScale by animateFloatAsState(
@@ -136,7 +137,7 @@ fun StatusStepper(
                         )
                         if (isCompleted || isCurrent) {
                             drawCircle(
-                                color = Color.White.copy(alpha = 0.3f),
+                                color = Color.White.copy(alpha = 0.5f),
                                 radius = radius * 0.4f
                             )
                         }
@@ -151,7 +152,7 @@ fun StatusStepper(
                         color = if (isCompleted || isCurrent) {
                             GlassWhite
                         } else {
-                            GlassWhite.copy(alpha = 0.4f)
+                            TextTertiary
                         },
                         fontWeight = if (isCurrent) FontWeight.SemiBold else FontWeight.Normal,
                         textAlign = TextAlign.Center,

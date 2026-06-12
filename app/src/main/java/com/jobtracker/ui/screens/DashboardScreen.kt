@@ -61,8 +61,8 @@ import com.jobtracker.ui.components.JobListItem
 import com.jobtracker.ui.components.StatisticsCard
 import com.jobtracker.ui.theme.CoralPink
 import com.jobtracker.ui.theme.GlassWhite
-import com.jobtracker.ui.theme.GlassWhiteLight
 import com.jobtracker.ui.theme.SoftLavender
+import com.jobtracker.ui.theme.TextSecondary
 import com.jobtracker.ui.theme.VibrantMint
 import com.jobtracker.ui.viewmodel.HomeViewModel
 
@@ -138,7 +138,7 @@ fun DashboardScreen(
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = onNavigateToAdd,
-                    containerColor = SoftLavender.copy(alpha = 0.8f),
+                    containerColor = SoftLavender,
                     contentColor = GlassWhite,
                     shape = RoundedCornerShape(20.dp)
                 ) {
@@ -260,7 +260,7 @@ fun DashboardScreen(
                         Text(
                             text = "${filteredJobs.size} job${if (filteredJobs.size != 1) "s" else ""}",
                             style = MaterialTheme.typography.labelLarge,
-                            color = GlassWhiteLight.copy(alpha = 0.6f)
+                            color = TextSecondary
                         )
                     }
                 }
@@ -355,7 +355,7 @@ private fun EmptyState(
                 "No jobs with \"$filter\" status. Try a different filter or add a new job."
             },
             style = MaterialTheme.typography.bodyMedium,
-            color = GlassWhiteLight.copy(alpha = 0.6f),
+            color = TextSecondary,
             modifier = Modifier.padding(bottom = 16.dp)
         )
         GlassButton(

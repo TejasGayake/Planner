@@ -19,8 +19,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.jobtracker.ui.theme.GlassBorder
-import com.jobtracker.ui.theme.GlassWhite
-import com.jobtracker.ui.theme.GlassWhiteLight
+import com.jobtracker.ui.theme.SlateBlue
+import com.jobtracker.ui.theme.TextPrimary
+import com.jobtracker.ui.theme.TextSecondary
+import com.jobtracker.ui.theme.TextTertiary
 
 /**
  * A glass-styled text input field matching the iOS 26 Liquid Glass design.
@@ -58,7 +60,7 @@ fun GlassInput(
                     Text(
                         text = placeholder,
                         style = MaterialTheme.typography.bodyLarge,
-                        color = GlassWhite.copy(alpha = 0.4f)
+                        color = TextTertiary
                     )
                 }
             } else null,
@@ -66,7 +68,7 @@ fun GlassInput(
                 Text(
                     text = label,
                     style = MaterialTheme.typography.titleMedium,
-                    color = GlassWhite.copy(alpha = 0.7f)
+                    color = TextSecondary
                 )
             },
             leadingIcon = leadingIcon,
@@ -91,23 +93,23 @@ fun GlassInput(
             ),
             shape = RoundedCornerShape(16.dp),
             colors = TextFieldDefaults.colors(
-                focusedTextColor = GlassWhite,
-                unfocusedTextColor = GlassWhite.copy(alpha = 0.8f),
+                focusedTextColor = TextPrimary,
+                unfocusedTextColor = TextSecondary,
                 cursorColor = MaterialTheme.colorScheme.primary,
-                focusedContainerColor = GlassWhiteLight.copy(alpha = 0.08f),
-                unfocusedContainerColor = GlassWhiteLight.copy(alpha = 0.04f),
+                focusedContainerColor = SlateBlue,
+                unfocusedContainerColor = SlateBlue.copy(alpha = 0.7f),
                 focusedLabelColor = MaterialTheme.colorScheme.primary,
-                unfocusedLabelColor = GlassWhite.copy(alpha = 0.5f),
+                unfocusedLabelColor = TextSecondary,
                 focusedIndicatorColor = MaterialTheme.colorScheme.primary,
                 unfocusedIndicatorColor = GlassBorder,
                 errorIndicatorColor = MaterialTheme.colorScheme.error,
-                errorContainerColor = GlassWhiteLight.copy(alpha = 0.04f),
+                errorContainerColor = SlateBlue,
                 errorLabelColor = MaterialTheme.colorScheme.error,
                 errorCursorColor = MaterialTheme.colorScheme.error,
-                disabledTextColor = GlassWhite.copy(alpha = 0.3f),
-                disabledContainerColor = GlassWhiteLight.copy(alpha = 0.02f),
-                disabledLabelColor = GlassWhite.copy(alpha = 0.3f),
-                disabledIndicatorColor = GlassBorder.copy(alpha = 0.3f)
+                disabledTextColor = TextTertiary,
+                disabledContainerColor = SlateBlue.copy(alpha = 0.4f),
+                disabledLabelColor = TextTertiary,
+                disabledIndicatorColor = GlassBorder.copy(alpha = 0.5f)
             ),
             textStyle = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.fillMaxWidth()

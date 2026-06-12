@@ -23,9 +23,11 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.jobtracker.ui.theme.GlassWhite
-import com.jobtracker.ui.theme.GlassWhiteLight
+import com.jobtracker.ui.theme.DeepNavy
+import com.jobtracker.ui.theme.SlateBlue
 import com.jobtracker.ui.theme.SoftLavender
+import com.jobtracker.ui.theme.TextPrimary
+import com.jobtracker.ui.theme.TextTertiary
 
 /**
  * A translucent glass-styled button with spring press animation.
@@ -63,14 +65,14 @@ fun GlassButton(
             .height(height),
         shape = RoundedCornerShape(cornerRadius),
         colors = ButtonDefaults.buttonColors(
-            containerColor = GlassWhiteLight.copy(alpha = 0.15f),
-            contentColor = GlassWhite,
-            disabledContainerColor = GlassWhiteLight.copy(alpha = 0.05f),
-            disabledContentColor = GlassWhite.copy(alpha = 0.4f)
+            containerColor = SoftLavender,
+            contentColor = DeepNavy,
+            disabledContainerColor = SlateBlue,
+            disabledContentColor = TextTertiary
         ),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = 0.dp,
-            pressedElevation = 2.dp
+            pressedElevation = 4.dp
         ),
         contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
         interactionSource = interactionSource
@@ -82,7 +84,7 @@ fun GlassButton(
             text = text,
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold,
-            color = if (enabled) GlassWhite else GlassWhite.copy(alpha = 0.4f)
+            color = if (enabled) DeepNavy else TextTertiary
         )
     }
 }

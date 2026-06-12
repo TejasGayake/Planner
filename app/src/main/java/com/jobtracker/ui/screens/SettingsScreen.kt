@@ -56,9 +56,12 @@ import com.jobtracker.ui.components.BlobBackground
 import com.jobtracker.ui.components.GlassButton
 import com.jobtracker.ui.components.GlassCard
 import com.jobtracker.ui.theme.CoralPink
+import com.jobtracker.ui.theme.GlassUltraLight
 import com.jobtracker.ui.theme.GlassWhite
 import com.jobtracker.ui.theme.GlassWhiteLight
 import com.jobtracker.ui.theme.SoftLavender
+import com.jobtracker.ui.theme.TextPrimary
+import com.jobtracker.ui.theme.TextSecondary
 import com.jobtracker.ui.theme.VibrantMint
 import com.jobtracker.ui.theme.iOSGreen
 import com.jobtracker.ui.theme.iOSOrange
@@ -138,9 +141,9 @@ fun SettingsScreen(
                                 onCheckedChange = { viewModel.toggleNotifications(it) },
                                 colors = SwitchDefaults.colors(
                                     checkedThumbColor = GlassWhite,
-                                    checkedTrackColor = SoftLavender.copy(alpha = 0.5f),
+                                    checkedTrackColor = SoftLavender.copy(alpha = 0.6f),
                                     uncheckedThumbColor = GlassWhiteLight,
-                                    uncheckedTrackColor = GlassWhiteLight.copy(alpha = 0.2f)
+                                    uncheckedTrackColor = GlassUltraLight
                                 )
                             )
                         }
@@ -157,7 +160,7 @@ fun SettingsScreen(
                     Text(
                         text = "Remind me $defaultReminderMinutes minutes before",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = GlassWhite.copy(alpha = 0.8f)
+                        color = TextPrimary
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
@@ -182,8 +185,8 @@ fun SettingsScreen(
                             modifier = Modifier.weight(1f),
                             colors = SliderDefaults.colors(
                                 thumbColor = SoftLavender,
-                                activeTrackColor = SoftLavender.copy(alpha = 0.5f),
-                                inactiveTrackColor = GlassWhiteLight.copy(alpha = 0.15f)
+                                activeTrackColor = SoftLavender.copy(alpha = 0.6f),
+                                inactiveTrackColor = GlassUltraLight
                             )
                         )
                     }
@@ -191,7 +194,7 @@ fun SettingsScreen(
                     Text(
                         text = formatReminderTime(defaultReminderMinutes),
                         style = MaterialTheme.typography.labelMedium,
-                        color = GlassWhiteLight.copy(alpha = 0.6f)
+                        color = TextSecondary
                     )
                 }
 
@@ -212,9 +215,9 @@ fun SettingsScreen(
                                 onCheckedChange = { viewModel.toggleDarkTheme(it) },
                                 colors = SwitchDefaults.colors(
                                     checkedThumbColor = GlassWhite,
-                                    checkedTrackColor = SoftLavender.copy(alpha = 0.5f),
+                                    checkedTrackColor = SoftLavender.copy(alpha = 0.6f),
                                     uncheckedThumbColor = GlassWhiteLight,
-                                    uncheckedTrackColor = GlassWhiteLight.copy(alpha = 0.2f)
+                                    uncheckedTrackColor = GlassUltraLight
                                 )
                             )
                         }
@@ -421,7 +424,7 @@ private fun SettingRow(
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodySmall,
-                color = GlassWhiteLight.copy(alpha = 0.6f)
+                color = TextSecondary
             )
         }
         if (trailing != null) {

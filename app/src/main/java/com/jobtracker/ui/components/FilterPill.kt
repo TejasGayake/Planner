@@ -21,9 +21,10 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.jobtracker.ui.theme.GlassBorder
-import com.jobtracker.ui.theme.GlassWhite
-import com.jobtracker.ui.theme.GlassWhiteLight
+import com.jobtracker.ui.theme.GlassUltraLight
 import com.jobtracker.ui.theme.SoftLavender
+import com.jobtracker.ui.theme.TextSecondary
+import com.jobtracker.ui.theme.TextTertiary
 
 /**
  * A selectable capsule-shaped filter pill for the dashboard filter bar.
@@ -49,13 +50,13 @@ fun FilterPill(
     )
 
     val containerColor = if (isSelected) {
-        SoftLavender.copy(alpha = 0.3f)
+        SoftLavender.copy(alpha = 0.25f)
     } else {
-        GlassWhiteLight.copy(alpha = 0.06f)
+        GlassUltraLight
     }
 
     val borderColor = if (isSelected) {
-        SoftLavender.copy(alpha = 0.6f)
+        SoftLavender.copy(alpha = 0.5f)
     } else {
         GlassBorder
     }
@@ -63,7 +64,7 @@ fun FilterPill(
     val textColor = if (isSelected) {
         SoftLavender
     } else {
-        GlassWhite.copy(alpha = 0.7f)
+        TextSecondary
     }
 
     Box(

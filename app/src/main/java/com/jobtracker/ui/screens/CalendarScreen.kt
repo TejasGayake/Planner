@@ -53,9 +53,12 @@ import com.jobtracker.ui.components.GlassCard
 import com.jobtracker.ui.components.JobListItem
 import com.jobtracker.ui.theme.CoralPink
 import com.jobtracker.ui.theme.GlassBorder
+import com.jobtracker.ui.theme.GlassUltraLight
 import com.jobtracker.ui.theme.GlassWhite
 import com.jobtracker.ui.theme.GlassWhiteLight
 import com.jobtracker.ui.theme.SoftLavender
+import com.jobtracker.ui.theme.TextPrimary
+import com.jobtracker.ui.theme.TextSecondary
 import com.jobtracker.ui.theme.VibrantMint
 import com.jobtracker.ui.viewmodel.CalendarDay
 import com.jobtracker.ui.viewmodel.CalendarViewModel
@@ -167,7 +170,7 @@ fun CalendarScreen(
                                 Text(
                                     text = dayName,
                                     style = MaterialTheme.typography.labelSmall,
-                                    color = GlassWhiteLight.copy(alpha = 0.5f),
+                                    color = TextSecondary,
                                     textAlign = TextAlign.Center,
                                     modifier = Modifier.weight(1f)
                                 )
@@ -242,7 +245,7 @@ fun CalendarScreen(
                                 Text(
                                     text = "No jobs for this date",
                                     style = MaterialTheme.typography.bodyLarge,
-                                    color = GlassWhiteLight.copy(alpha = 0.5f)
+                                    color = TextSecondary
                                 )
                             }
                         }
@@ -279,7 +282,7 @@ private fun CalendarDayCell(
             .clip(CircleShape)
             .then(
                 if (isSelected) {
-                    Modifier.background(SoftLavender.copy(alpha = 0.4f))
+                    Modifier.background(SoftLavender.copy(alpha = 0.25f))
                 } else if (day.isToday) {
                     Modifier.border(1.dp, SoftLavender.copy(alpha = 0.6f), CircleShape)
                 } else {
@@ -299,11 +302,11 @@ private fun CalendarDayCell(
                 color = if (isSelected) {
                     GlassWhite
                 } else if (!day.isCurrentMonth) {
-                    GlassWhiteLight.copy(alpha = 0.25f)
+                    GlassUltraLight
                 } else if (day.isToday) {
                     SoftLavender
                 } else {
-                    GlassWhite.copy(alpha = 0.8f)
+                    TextPrimary
                 },
                 textAlign = TextAlign.Center
             )
