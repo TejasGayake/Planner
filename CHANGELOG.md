@@ -29,3 +29,4 @@
 ### Changed
 
 ### Fixed
+- **Crash Fix**: Added missing `JobTrackerApp` Application class (initializes notification channels on startup) — resolved `ClassNotFoundException` crash on Android 13+ when launching the APK

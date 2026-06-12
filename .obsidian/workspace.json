@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "project_info/environment.md",
+                "file": "project_info/tech-stack.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "environment"
+              "title": "tech-stack"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "project_info/environment.md",
+                "file": "project_info/tech-stack.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for environment"
+              "title": "Backlinks for tech-stack"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "project_info/environment.md",
+                "file": "project_info/tech-stack.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from environment"
+              "title": "Outgoing links from tech-stack"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "project_info/environment.md",
+                "file": "project_info/tech-stack.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of environment"
+              "title": "Outline of tech-stack"
             }
           }
         ]
@@ -185,17 +185,18 @@
   },
   "active": "cc86ce7f697d8597",
   "lastOpenFiles": [
-    "app/build/test-results/testDebugUnitTest/binary/results.bin",
-    "app/build/test-results/testDebugUnitTest/binary/output.bin.idx",
-    "app/build/test-results/testDebugUnitTest/binary/output.bin",
-    "app/build/test-results/testDebugUnitTest/TEST-com.jobtracker.data.repository.ReminderRepositoryTest$GetRemindersForJob.xml",
-    "app/build/test-results/testDebugUnitTest/TEST-com.jobtracker.data.repository.ReminderRepositoryTest$GetAllReminders.xml",
-    "app/build/test-results/testDebugUnitTest/TEST-com.jobtracker.data.repository.ReminderRepositoryTest$GetPendingReminderCount.xml",
-    "app/build/test-results/testDebugUnitTest/TEST-com.jobtracker.parser.JobParserTest.xml",
-    "app/build/test-results/testDebugUnitTest/TEST-com.jobtracker.data.repository.ReminderRepositoryTest$UpdateReminder.xml",
-    "app/build/test-results/testDebugUnitTest/TEST-com.jobtracker.data.repository.ReminderRepositoryTest$MarkAsCompleted.xml",
-    "app/build/test-results/testDebugUnitTest/TEST-com.jobtracker.data.repository.ReminderRepositoryTest$InsertReminder.xml",
-    "app/build/test-results/testDebugUnitTest/TEST-com.jobtracker.data.repository.ReminderRepositoryTest$GetDueReminders.xml",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/_oOHXyYSZcWm3oUXdFkuWqZQzvY=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/zVZU4LP25DQVxI3yf0vj27AuDik=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/_kmGrn6NEJgKPO+87jepJ_sTBpM=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ZNDMErQGA1444j7vtbVMmw+j2qI=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ZST++SpajDnDeDuhOPPaGTbxPwI=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ywOweKsts9vs5lP2NI08xHj6tzk=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/yP4jGc+CXZ53KE2KMEUzMyyJdbQ=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/Yzz4G6OCi65ECG3tyIskVC9I76c=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/yYetwrDtaH68YLp6fZBuMw3yKgE=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/YMfpFviETS2SiXXu4ZiHTkuyttk=",
+    "app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/YJsczrG7SExs15Fk51HXLla9pLo=",
+    "project_info/environment.md",
     "project_info/conversation.md"
   ]
 }
